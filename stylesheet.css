@@ -1,27 +1,45 @@
 .intro {
-    padding: 2% 10% 2% 2%;
+  padding: 2% 10% 2% 2%;
 }
 
 #name {
-    margin: 0.5%; 
-    padding: 0em;
+  margin: 0.5%;
+  padding: 0em;
 }
 
 #designation {
-    margin: 0em;
-    padding: 0% 0% 1% 0%;
-}
-
-/* top right bottom left */
-
-.education {
-    margin: 0% 0% 0.5% 0%;
-}
-
-.unordered-list {
-    margin: 0.6% 0% 0.6% 0%;
+  margin: 0em;
+  padding: 0% 0% 1% 0%;
 }
 
 #profile-img {
-    border-radius: 50%
+  border-radius: 50%;
+}
+
+/* .education-table,
+tr,
+td, th {
+  border: 1px solid;
+  border-collapse: collapse;
+  padding: 10px 10px 10px 10px;
+} */
+
+table.education-table {
+  border: solid 1px;
+  border-collapse: collapse;
+}
+table.education-table th {
+  border: solid 1px;
+  border-collapse: collapse;
+  padding: 10px;
+}
+table.education-table td {
+  border: solid 1px;
+  border-collapse: collapse;
+  padding: 10px;
+}
+table.education-table tr {
+  border: solid 1px;
+  border-collapse: collapse;
+  padding: 10px;
 }
