@@ -39,16 +39,16 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #1a1a1a;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #ccc;
+  background: #3a3a3a;
   border-radius: 30px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #bbb;
+  background: #555;
 }
 
 /* ---##-- REUSABLE CSS --##--- */
@@ -736,7 +736,7 @@ footer {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(20px);
     width: 100%;
     min-height: 450px;

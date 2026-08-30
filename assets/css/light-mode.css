@@ -80,6 +80,8 @@ i {
 /* ------- BASE -------- */
 body {
   background: var(--body-color);
+  width: 100%;
+  overflow-x: hidden;
   transition:
     background-color 0.5s,
     color 0.5s;

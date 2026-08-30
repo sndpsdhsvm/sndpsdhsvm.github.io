@@ -9,6 +9,16 @@ function myMenuFunction() {
   }
 }
 
+/* ----- CLOSE MOBILE MENU ON LINK CLICK ----- */
+document.querySelectorAll(".nav-menu a").forEach(function (link) {
+  link.addEventListener("click", function () {
+    var menuBtn = document.getElementById("myNavMenu");
+    if (menuBtn.className.indexOf("responsive") !== -1) {
+      menuBtn.className = "nav-menu";
+    }
+  });
+});
+
 /* ----- ADD SHADOW ON NAVIGATION BAR WHILE SCROLLING ----- */
 window.onscroll = function () {
   headerShadow();
@@ -29,67 +39,70 @@ function headerShadow() {
 }
 
 /* ----- TYPING EFFECT ----- */
-var typingEffect = new Typed(".typedText", {
-  strings: [
-    "Designer",
-    "Developer",
-    "DevOps",
-    "Gamer",
-    "Video Editor",
-    "Twitch Streamer",
-    "QA",
-  ],
-  loop: true,
-  typeSpeed: 100,
-  backSpeed: 80,
-  backDelay: 2000,
-});
+if (typeof Typed !== "undefined") {
+  new Typed(".typedText", {
+    strings: [
+      "Designer",
+      "Developer",
+      "DevOps",
+      "Gamer",
+      "Video Editor",
+      "Twitch Streamer",
+      "QA",
+    ],
+    loop: true,
+    typeSpeed: 100,
+    backSpeed: 80,
+    backDelay: 2000,
+  });
+}
 
 /* ----- ## -- SCROLL REVEAL ANIMATION -- ## ----- */
-const sr = ScrollReveal({
-  origin: "top",
-  distance: "80px",
-  duration: 1000,
-  reset: true,
-});
+if (typeof ScrollReveal !== "undefined") {
+  const sr = ScrollReveal({
+    origin: "top",
+    distance: "80px",
+    duration: 1000,
+    reset: true,
+  });
 
-/* -- HOME -- */
-sr.reveal(".featured-text-card", {});
-sr.reveal(".featured-name", { delay: 50 });
-sr.reveal(".featured-text-info", { delay: 100 });
-sr.reveal(".featured-text-btn", { delay: 100 });
-sr.reveal(".social_icons", { delay: 100 });
-sr.reveal(".featured-image", { delay: 150 });
+  /* -- HOME -- */
+  sr.reveal(".featured-name", { delay: 50 });
+  sr.reveal(".featured-text-info", { delay: 100 });
+  sr.reveal(".featured-text-btn", { delay: 100 });
+  sr.reveal(".social_icons", { delay: 100 });
+  sr.reveal(".featured-image", { delay: 150 });
 
-/* -- PROJECT BOX -- */
-sr.reveal(".project-box", { interval: 100 });
+  /* -- PROJECT BOX -- */
+  sr.reveal(".project-box", { interval: 100 });
 
-/* -- HEADINGS -- */
-sr.reveal(".top-header", {});
+  /* -- HEADINGS -- */
+  sr.reveal(".top-header", {});
 
-/* ----- ## -- SCROLL REVEAL LEFT_RIGHT ANIMATION -- ## ----- */
+  /* ----- ## -- SCROLL REVEAL LEFT_RIGHT ANIMATION -- ## ----- */
 
-/* -- ABOUT INFO & CONTACT INFO -- */
-const srLeft = ScrollReveal({
-  origin: "left",
-  distance: "80px",
-  duration: 1000,
-  reset: true,
-});
+  /* -- ABOUT INFO & CONTACT INFO -- */
+  const srLeft = ScrollReveal({
+    origin: "left",
+    distance: "80px",
+    duration: 1000,
+    reset: true,
+  });
 
-srLeft.reveal(".about-info", { delay: 50 });
-srLeft.reveal(".contact-info", { delay: 50 });
+  srLeft.reveal(".about-info", { delay: 50 });
+  srLeft.reveal(".contact-info", { delay: 50 });
 
-/* -- ABOUT SKILLS & FORM BOX -- */
-const srRight = ScrollReveal({
-  origin: "right",
-  distance: "80px",
-  duration: 1000,
-  reset: true,
-});
+  /* -- ABOUT SKILLS & FORM BOX -- */
+  const srRight = ScrollReveal({
+    origin: "right",
+    distance: "80px",
+    duration: 1000,
+    reset: true,
+  });
 
-srRight.reveal(".skills-box", { delay: 50 });
-srRight.reveal(".form-control", { delay: 50 });
+  srRight.reveal(".skills-box", { delay: 50 });
+  srRight.reveal(".form-control", { delay: 50 });
+}
 
 /* ----- CHANGE ACTIVE LINK ----- */
 
@@ -121,26 +134,49 @@ window.addEventListener("scroll", scrollActive);
 const modeSwitch = document.getElementById("mode-switch");
 const themeLink = document.getElementById("theme-style");
 
+function applyTheme(dark) {
+  themeLink.href = dark ? "assets/css/dark-mode.css" : "assets/css/light-mode.css";
+  modeSwitch.checked = dark;
+  try {
+    localStorage.setItem("theme", dark ? "dark" : "light");
+  } catch (e) {}
+}
+
 modeSwitch.addEventListener("change", function () {
-  if (modeSwitch.checked) {
-    themeLink.href = "assets/css/dark-mode.css";
-  } else {
-    themeLink.href = "assets/css/light-mode.css";
-  }
+  applyTheme(modeSwitch.checked);
 });
 
 /* ----- SET MODES USING USER PREFERENCE ----- */
 function detectTheme() {
-  if (
-    window.matchMedia &&
-    window.matchMedia("(prefers-color-scheme: dark)").matches
-  ) {
-    themeLink.href = "assets/css/dark-mode.css";
-    modeSwitch.checked = true;
-  } else {
-    themeLink.href = "assets/css/light-mode.css";
-    modeSwitch.checked = false;
-  }
+  let saved = null;
+  try {
+    saved = localStorage.getItem("theme");
+  } catch (e) {}
+  const prefersDark =
+    window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+  applyTheme(saved ? saved === "dark" : prefersDark);
 }
 
-const userTheme = detectTheme();
+detectTheme();
+
+/* ----- CONTACT FORM ----- */
+const contactForm = document.getElementById("contact-form");
+if (contactForm) {
+  contactForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const data = new FormData(contactForm);
+    const subject = encodeURIComponent(
+      "Portfolio contact from " + data.get("name")
+    );
+    const body = encodeURIComponent(
+      data.get("message") +
+        "\n\n- " +
+        data.get("name") +
+        " (" +
+        data.get("email") +
+        ")"
+    );
+    window.location.href =
+      "mailto:sndp.sdhsvm@gmail.com?subject=" + subject + "&body=" + body;
+  });
+}

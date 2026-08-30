@@ -11,6 +11,23 @@
   <!-- css -->
   <link rel="stylesheet" id="theme-style" href="assets/css/light-mode.css" />
 
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("theme");
+        var dark = saved
+          ? saved === "dark"
+          : window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches;
+      } catch (e) {
+        var dark = false;
+      }
+      if (dark) {
+        document.getElementById("theme-style").href = "assets/css/dark-mode.css";
+      }
+    })();
+  </script>
+
   <!-- favicons -->
   <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon" />
 
@@ -46,7 +63,7 @@
         </ul>
       </div>
       <div class="nav-button">
-        <a href="/assets/pdf/Sandeep(Resume).pdf" download><button class="btn">
+        <a href="assets/pdf/Sandeep(Resume).pdf" download><button class="btn">
             Download CV <i class="uil uil-file-alt"></i></button></a>
       </div>
       <div class="nav-checkbox">
@@ -87,7 +104,7 @@
           </div>
           <div class="featured-text-btn">
             <button class="btn blue-btn">Hire Me</button>
-            <a href="/assets/pdf/Sandeep(Resume).pdf" download>
+            <a href="assets/pdf/Sandeep(Resume).pdf" download>
               <button class="btn">
                 Download CV <i class="uil uil-file-alt"></i></button></a>
           </div>
@@ -108,7 +125,7 @@
             <img src="assets/images/avatar.png" alt="avatar" />
           </div>
         </div>
-        <div class="scroll-icon-box" id="hidden">
+        <div class="scroll-icon-box">
           <a href="#about" class="scroll-btn">
             <i class="uil uil-mouse-alt"></i>
             <p>Scroll Down</p>
@@ -131,7 +148,7 @@
                 Now, I am currently delving into the realm of DevOps.
               </p>
               <div class="about-btn">
-                <a href="/assets/pdf/Sandeep(Resume).pdf" download>
+                <a href="assets/pdf/Sandeep(Resume).pdf" download>
                   <button class="btn">
                     Download CV <i class="uil uil-import"></i></button></a>
               </div>
@@ -216,20 +233,30 @@
             </div>
           </div>
           <div class="col">
-            <div class="form-control">
+            <form class="form-control" id="contact-form">
               <div class="form-inputs">
-                <input type="text" class="input-field" placeholder="Name" />
-                <input type="text" class="input-field" placeholder="Email" />
+                <input
+                  type="text"
+                  class="input-field"
+                  name="name"
+                  placeholder="Name"
+                  required />
+                <input
+                  type="email"
+                  class="input-field"
+                  name="email"
+                  placeholder="Email"
+                  required />
               </div>
               <div class="text-area">
-                <textarea placeholder="Message"></textarea>
+                <textarea name="message" placeholder="Message" required></textarea>
               </div>
               <div class="form-button">
-                <button class="btn">
+                <button type="submit" class="btn">
                   Send <i class="uil uil-message"></i>
                 </button>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </section>
