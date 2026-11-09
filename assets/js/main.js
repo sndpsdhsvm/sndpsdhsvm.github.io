@@ -61,7 +61,7 @@ if (typeof ScrollReveal !== "undefined") {
     origin: "top",
     distance: "80px",
     duration: 1000,
-    reset: true,
+    reset: false,
   });
 
   /* -- HOME -- */
@@ -88,7 +88,7 @@ if (typeof ScrollReveal !== "undefined") {
     origin: "left",
     distance: "80px",
     duration: 1000,
-    reset: true,
+    reset: false,
   });
 
   srLeft.reveal(".about-info", { delay: 50 });
@@ -99,7 +99,7 @@ if (typeof ScrollReveal !== "undefined") {
     origin: "right",
     distance: "80px",
     duration: 1000,
-    reset: true,
+    reset: false,
   });
 
   srRight.reveal(".skills-box", { delay: 50 });
