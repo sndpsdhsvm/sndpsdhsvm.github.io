@@ -62,6 +62,5 @@ git push
 ## Contact
 
 - Email: sandeep.sadhasivam@gmail.com
-- Phone: +91 81055 82110
 - LinkedIn: https://www.linkedin.com/in/sndpsdhsvm/
 - GitHub: https://github.com/sndpsdhsvm
