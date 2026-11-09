@@ -42,13 +42,11 @@ function headerShadow() {
 if (typeof Typed !== "undefined") {
   new Typed(".typedText", {
     strings: [
-      "Designer",
-      "Developer",
-      "DevOps",
+      "QA Engineer",
+      "Flutter Developer",
+      "DevOps Enthusiast",
       "Gamer",
-      "Video Editor",
-      "Twitch Streamer",
-      "QA",
+      "Problem Solver",
     ],
     loop: true,
     typeSpeed: 100,
@@ -74,7 +72,11 @@ if (typeof ScrollReveal !== "undefined") {
   sr.reveal(".featured-image", { delay: 150 });
 
   /* -- PROJECT BOX -- */
-  sr.reveal(".project-box", { interval: 100 });
+  sr.reveal(".project-card", { interval: 100 });
+
+  /* -- EXPERIENCE TIMELINE -- */
+  sr.reveal(".timeline-item", { interval: 100 });
+  sr.reveal(".edu-card", { interval: 100 });
 
   /* -- HEADINGS -- */
   sr.reveal(".top-header", {});
@@ -177,6 +179,6 @@ if (contactForm) {
         ")"
     );
     window.location.href =
-      "mailto:sndp.sdhsvm@gmail.com?subject=" + subject + "&body=" + body;
+      "mailto:sandeep.sadhasivam@gmail.com?subject=" + subject + "&body=" + body;
   });
 }

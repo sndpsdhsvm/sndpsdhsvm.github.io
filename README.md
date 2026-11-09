@@ -1,6 +1,16 @@
-# Sandeep S — Portfolio
+# Sandeep Sadhasivam — Portfolio
 
 Personal portfolio site, live at [sndpsdhsvm.github.io](https://sndpsdhsvm.github.io).
+
+## Content
+
+- Hero intro: Technical QA at Keywords Studios, Flutter developer, DevOps
+- About: summary and skills grouped into QA & Testing, Development, DevOps & Platforms
+- Experience: timeline of roles at Keywords Studios, Proactive For Her and Leroc
+- Education: MSc Computer Science and BCA, Kristu Jayanti University
+- Projects: Home Media & Virtualization Lab, Facial Recognition Attendance System, Aero Pre-Build PC Sales
+- Contact: email, phone and a `mailto:` contact form
+- Download CV: serves the current resume from `assets/pdf/`
 
 ## Features
 
@@ -10,7 +20,6 @@ Personal portfolio site, live at [sndpsdhsvm.github.io](https://sndpsdhsvm.githu
 - Typing animation, scroll-reveal animations
 - Sticky navbar with active-section highlight
 - Collapsible mobile menu
-- Contact form (opens a prefilled email via `mailto:`)
 
 ## Tech
 
@@ -52,6 +61,7 @@ git push
 
 ## Contact
 
-- Email: sndp.sdhsvm@gmail.com
+- Email: sandeep.sadhasivam@gmail.com
+- Phone: +91 81055 82110
 - LinkedIn: https://www.linkedin.com/in/sndpsdhsvm/
 - GitHub: https://github.com/sndpsdhsvm
