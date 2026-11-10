@@ -18,6 +18,7 @@
 
   <!-- css -->
   <link rel="stylesheet" id="theme-style" href="assets/css/light-mode.css" />
+  <link rel="stylesheet" href="assets/css/game-ui.css" />
 
   <script>
     (function () {
@@ -33,6 +34,7 @@
       if (dark) {
         document.getElementById("theme-style").href = "assets/css/dark-mode.css";
       }
+      document.documentElement.dataset.theme = dark ? "dark" : "light";
     })();
   </script>
 
@@ -102,6 +104,7 @@
       <!-- FEATURED -->
       <section class="featured-box" id="home">
         <div class="featured-text">
+          <p class="game-kicker"><span></span> PLAYER PROFILE <b>// 001</b></p>
           <!-- <div class="featured-text-card">
               <span>Sandeep S</span>
             </div> -->

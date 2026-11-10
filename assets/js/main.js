@@ -130,6 +130,7 @@ const themeLink = document.getElementById("theme-style");
 function applyTheme(dark) {
   themeLink.href = dark ? "assets/css/dark-mode.css" : "assets/css/light-mode.css";
   modeSwitch.checked = dark;
+  document.documentElement.dataset.theme = dark ? "dark" : "light";
   try {
     localStorage.setItem("theme", dark ? "dark" : "light");
   } catch (e) {}
