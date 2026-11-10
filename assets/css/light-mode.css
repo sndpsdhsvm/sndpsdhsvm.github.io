@@ -1041,3 +1041,23 @@ footer {
     visibility: hidden;
   }
 }
+
+.reveal-ready {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 560ms ease, transform 560ms ease;
+}
+
+.reveal-ready.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-ready,
+  .reveal-ready.is-revealed {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

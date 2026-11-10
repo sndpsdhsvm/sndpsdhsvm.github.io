@@ -38,72 +38,63 @@ function headerShadow() {
   }
 }
 
-/* ----- TYPING EFFECT ----- */
-if (typeof Typed !== "undefined") {
-  new Typed(".typedText", {
-    strings: [
-      "QA Engineer",
-      "Flutter Developer",
-      "DevOps Enthusiast",
-      "Gamer",
-      "Problem Solver",
-    ],
-    loop: true,
-    typeSpeed: 100,
-    backSpeed: 80,
-    backDelay: 2000,
-  });
+/* ----- LIGHTWEIGHT TYPING EFFECT ----- */
+const typedText = document.querySelector(".typedText");
+const phrases = ["QA Engineer", "Flutter Developer", "DevOps Enthusiast", "Gamer", "Problem Solver"];
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+if (typedText) {
+  if (prefersReducedMotion) {
+    typedText.textContent = phrases[0];
+  } else {
+    typedText.textContent = phrases[0];
+    let phraseIndex = 0;
+    let characterIndex = phrases[0].length;
+    let deleting = true;
+    const typeNext = () => {
+      const phrase = phrases[phraseIndex];
+      typedText.textContent = phrase.slice(0, characterIndex);
+      if (!deleting && characterIndex < phrase.length) {
+        characterIndex += 1;
+        window.setTimeout(typeNext, 82);
+      } else if (!deleting) {
+        deleting = true;
+        window.setTimeout(typeNext, 1500);
+      } else if (characterIndex > 0) {
+        characterIndex -= 1;
+        window.setTimeout(typeNext, 38);
+      } else {
+        deleting = false;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+        window.setTimeout(typeNext, 250);
+      }
+    };
+    window.setTimeout(typeNext, 1800);
+  }
 }
 
-/* ----- ## -- SCROLL REVEAL ANIMATION -- ## ----- */
-if (typeof ScrollReveal !== "undefined") {
-  const sr = ScrollReveal({
-    origin: "top",
-    distance: "80px",
-    duration: 1000,
-    reset: false,
+/* ----- LIGHTWEIGHT, PROGRESSIVE SCROLL REVEALS ----- */
+if (!prefersReducedMotion && "IntersectionObserver" in window) {
+  const revealTargets = document.querySelectorAll(
+    ".featured-name, .featured-text-info, .featured-text-btn, .social_icons, .featured-image, .project-card, .timeline-item, .edu-card, .top-header, .about-info, .contact-info, .skills-box, .form-control"
+  );
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-revealed");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: "0px 0px -24px 0px" });
+
+  revealTargets.forEach((element) => {
+    element.classList.add("reveal-ready");
+    if (element.getBoundingClientRect().top < window.innerHeight) {
+      element.classList.add("is-revealed");
+    } else {
+      revealObserver.observe(element);
+    }
   });
-
-  /* -- HOME -- */
-  sr.reveal(".featured-name", { delay: 50 });
-  sr.reveal(".featured-text-info", { delay: 100 });
-  sr.reveal(".featured-text-btn", { delay: 100 });
-  sr.reveal(".social_icons", { delay: 100 });
-  sr.reveal(".featured-image", { delay: 150 });
-
-  /* -- PROJECT BOX -- */
-  sr.reveal(".project-card", { interval: 100 });
-
-  /* -- EXPERIENCE TIMELINE -- */
-  sr.reveal(".timeline-item", { interval: 100 });
-  sr.reveal(".edu-card", { interval: 100 });
-
-  /* -- HEADINGS -- */
-  sr.reveal(".top-header", {});
-
-  /* ----- ## -- SCROLL REVEAL LEFT_RIGHT ANIMATION -- ## ----- */
-
-  /* -- ABOUT INFO & CONTACT INFO -- */
-  const srLeft = ScrollReveal({
-    origin: "left",
-    distance: "80px",
-    duration: 1000,
-    reset: false,
-  });
-
-  srLeft.reveal(".about-info", { delay: 50 });
-  srLeft.reveal(".contact-info", { delay: 50 });
-
-  /* -- ABOUT SKILLS & FORM BOX -- */
-  const srRight = ScrollReveal({
-    origin: "right",
-    distance: "80px",
-    duration: 1000,
-    reset: false,
-  });
-
-  srRight.reveal(".skills-box", { delay: 50 });
-  srRight.reveal(".form-control", { delay: 50 });
 }
 
 /* ----- CHANGE ACTIVE LINK ----- */
