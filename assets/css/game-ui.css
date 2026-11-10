@@ -171,6 +171,7 @@ nav {
   color: var(--game-text);
   line-height: 1.14;
   letter-spacing: -0.045em;
+  overflow-anchor: none;
 }
 
 .featured-name-span,
@@ -180,9 +181,14 @@ nav {
 }
 
 .typedText {
+  display: inline-block;
+  min-height: 1.15em;
   border-right: 2px solid var(--game-magenta);
   padding-right: 5px;
+  white-space: nowrap;
 }
+
+.featured-name > p:last-child { min-height: 1.3em; }
 
 .featured-text-info {
   max-width: 540px;
@@ -214,6 +220,7 @@ nav {
   position: absolute;
   right: 14px;
   bottom: 14px;
+  z-index: 2;
   padding: 7px 10px;
   color: var(--game-cyan);
   background: color-mix(in srgb, var(--game-bg) 82%, transparent);
@@ -223,6 +230,8 @@ nav {
 }
 
 .image img {
+  position: relative;
+  z-index: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -469,6 +478,8 @@ footer {
   .featured-box::before { top: 80px; font-size: 8px; }
   .game-kicker { font-size: 9px; }
   .featured-name { font-size: clamp(34px, 10vw, 48px); }
+  .featured-name > p:last-child { min-height: 1.4em; }
+  .typedText { font-size: clamp(20px, 6vw, 27px); }
   .featured-text-btn { flex-wrap: wrap; gap: 10px; }
   .section { padding-block: 5em; }
   .about-info { padding: 24px; }
